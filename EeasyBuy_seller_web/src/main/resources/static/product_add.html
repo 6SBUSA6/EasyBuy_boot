@@ -1,0 +1,168 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="/kindeditor/themes/default/default.css" />
+    <script charset="utf-8" src="/kindeditor/kindeditor.js"></script>
+    <script charset="utf-8" src="/kindeditor/lang/zh_CN.js"></script>
+    <base href="<%=basePath%>/resources/">
+    <link rel="stylesheet" type="text/css" href="/layui/css/layui.css">
+    <script type="text/javascript" src="/layui/layui.js"></script>
+</head>
+
+<body>
+
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li><a href="#">首页</a></li>
+        <li><a href="#">表单</a></li>
+    </ul>
+</div>
+
+<div class="formbody">
+
+    <div class="formtitle"><span>添加商品信息</span></div>
+
+    <ul class="forminfo">
+        <form action="/seller/addProduct" method="post" id="addForm" enctype="multipart/form-data">
+            <li><label>商品名称</label><input name="name" type="text" class="dfinput" /><i>标题不能超过30个字符</i></li>
+            <li><label>商品价格</label><input name="price" type="text" class="dfinput" /><i>多个关键字用,隔开</i></li>
+            <li><label>库存</label><input name="stock" type="text" class="dfinput" /></li>
+            <li>
+                <label>选择分类</label>
+                <cite>
+                <select id="categoryLeve1" onchange="changeOption(1)" name="categorylevel1id">
+                    <option>一级标签</option>
+                </select>
+                <select id="categoryLeve2" onchange="changeOption(2)" name="categorylevel2id">
+                    <option>二级标签</option>
+                </select>
+                <select id="categoryLeve3" name="categorylevel3id">
+                    <option>三级标签</option>
+                </select>
+                </cite>
+            </li>
+            <li><label>选择图片</label><input name="image" type="file" class="dfinput"  /></li>
+            <li><label>文章内容</label><textarea name="description" style="width: 800px; height: 300px; visibility: hidden;"></textarea></li>
+            <li>
+                <label>上传图片</label>
+                <div class="layui-upload">
+                    <button type="button" class="layui-btn" id="test2" >图片上传</button>
+                    <blockquote class="layui-elem-quote layui-quote-nm"	style="margin-top: 10px;">
+                        预览图：
+                        <div class="layui-upload-list" id="demo2"></div>
+                    </blockquote>
+                </div>
+                <!--<form action="/seller/layuiUpload" method="post" id="saveform">
+                    <input type="submit" value="提交">
+                </form>-->
+            </li>
+            <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="确认保存"/></li>
+        </form>
+    </ul>
+
+
+</div>
+</body>
+</html>
+<script>
+
+    //kindeditor
+    var editor;
+    KindEditor.ready(function(K) {
+        editor = K.create('textarea[name="description"]', {
+            uploadJson : '/seller/uploadFile', //文件上传的url
+            allowFileManager : true,
+            allowImageUpload: true, //多图上传
+            allowFileManager : true, //浏览图片空
+            filterMode : false, //HTML特殊代码过滤
+            afterBlur: function(){ this.sync(); }, //编辑器失去焦点(blur)时执行的回调函数（将编辑器的HTML数据同步到textarea）
+        });
+        prettyPrint();
+
+    });
+
+    //layui
+    layui.use(['upload'],function(){
+        var upload = layui.upload,
+            $=layui.$;
+        upload.render({
+            elem: '#test2'
+            ,url: '/seller/layuiUpload'
+            ,multiple: true
+            ,accept:'images'
+            ,exts:'jpg|png|gif|bmp|jpeg'
+            ,size:2048
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#demo2').append('<img width="80px" src="'
+                        + result +'" alt="'+ file.name
+                        +'" class="layui-upload-img upload-img">');
+                });
+            }
+            ,done: function(res){
+                $("#addForm").append("<input type='hidden' name='imgs' value='"
+                    +res.imgurl+"'>");
+            }
+        });
+    })
+
+    function firstOption() {
+        loadOption(1,0)
+    }
+
+    function loadOption( leve, pid) {
+        //通用的ajax
+        $.ajax({
+            //请求的url
+            url:"/seller/findChildByPid?pid="+pid,
+            //是否异步
+            async:true,
+            //请求的参数
+            data:null,
+            //请求的方式
+            type:"GET",
+            //预期的返回类型
+            dataType:"JSON",
+            //两个回调函数
+            success:function (data){
+                let option = "<option>请选择</option>";
+                let categoryList = data.object;
+                for (let i = 0; i < categoryList.length; i++) {
+                     option = option +"<option value='"+categoryList[i].id+"'>"+categoryList[i].name+"</option>";
+                }
+                if (leve == 1){
+                    $("#categoryLeve1").html("")
+                    $("#categoryLeve1").append(option)
+                }if (leve == 2){
+                    $("#categoryLeve2").html("")
+                    $("#categoryLeve2").append(option)
+                }if (leve == 3){
+                    $("#categoryLeve3").html("")
+                    $("#categoryLeve3").append(option)
+                }
+            },
+            error:function (){
+                alert("操作失败")
+            }
+        })
+    }
+
+    function changeOption(leve) {
+        if(leve == 1){
+            let pid = $("#categoryLeve1").val();
+            loadOption(2,pid);
+        }
+        if(leve == 2){
+            let pid = $("#categoryLeve2").val();
+            loadOption(3,pid);
+        }
+    }
+    window.onload = firstOption;
+
+
+</script>

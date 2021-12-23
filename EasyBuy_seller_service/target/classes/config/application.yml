@@ -1,0 +1,25 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/buy_boot?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 1234
+    type: com.alibaba.druid.pool.DruidDataSource
+
+mybatis:
+  type-aliases-package: com.gyw.bean
+  mapper-locations: classpath:com/gyw/mapper/*.xml
+
+dubbo:
+  registry:
+    address: N/A
+  application:
+    name: seller_service
+  scan:
+    base-packages: com.gyw
+  protocol:
+    port: 20881
+    name: dubbo

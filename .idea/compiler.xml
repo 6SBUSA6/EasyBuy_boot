@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="EasyBuy_bean" />
+        <module name="EasyBuy_service_interface" />
+        <module name="EasyBuy_user_controller" />
+        <module name="EasyBuy_order_service" />
+        <module name="EasyBuy_product_service" />
+        <module name="EeasyBuy_seller_web" />
+        <module name="EasyBuy_user_srvice" />
+        <module name="EasyBuy_mapper" />
+        <module name="EasyBuy_buy_web" />
+        <module name="EasyBuy_seller_service" />
+        <module name="EasyBuy_util" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="EasyBuy_user_controller" target="8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="EasyBuy_bean" options="-parameters" />
+      <module name="EasyBuy_buy_web" options="-parameters" />
+      <module name="EasyBuy_mapper" options="-parameters" />
+      <module name="EasyBuy_order_service" options="-parameters" />
+      <module name="EasyBuy_product_service" options="-parameters" />
+      <module name="EasyBuy_seller_service" options="-parameters" />
+      <module name="EasyBuy_service_interface" options="-parameters" />
+      <module name="EasyBuy_user_controller" options="-parameters" />
+      <module name="EasyBuy_user_srvice" options="-parameters" />
+      <module name="EasyBuy_util" options="-parameters" />
+      <module name="EeasyBuy_seller_web" options="-parameters" />
+    </option>
+  </component>
+</project>

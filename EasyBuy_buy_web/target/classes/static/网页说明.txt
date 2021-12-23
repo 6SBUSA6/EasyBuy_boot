@@ -1,0 +1,10 @@
+﻿首页:           index.html
+品牌列表页: Brand.html
+品牌明细页: BrandList.html
+购物车页:   BuyCar.html
+商品列表页: ProductList.html
+商品明细页: Product.html
+秒杀列表页: Sell.html
+秒杀明细页: SellDetail.html
+个人中心页: Member.html
+

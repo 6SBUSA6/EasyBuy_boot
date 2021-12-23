@@ -1,0 +1,16 @@
+com\gyw\mapper\BuyProductImagesMapper.class
+com\gyw\mapper\BuyOrderMapper.class
+com\gyw\mapper\BuyNewsMapper.class
+com\gyw\mapper\BuyContentMapper.class
+com\gyw\mapper\BuyProductCommentMapper.class
+com\gyw\mapper\BuyRolesMapper.class
+com\gyw\mapper\BuyProductCategoryMapper.class
+com\gyw\mapper\BuySeckillOrderMapper.class
+com\gyw\mapper\BuyMenuMapper.class
+com\gyw\mapper\BuyProductMapper.class
+com\gyw\mapper\BuyOrderDetailMapper.class
+com\gyw\mapper\BuySeckillGoodsMapper.class
+com\gyw\mapper\BuyAdminMapper.class
+com\gyw\mapper\BuyUserMapper.class
+com\gyw\mapper\BuySellerMapper.class
+com\gyw\mapper\BuyUserAddressMapper.class

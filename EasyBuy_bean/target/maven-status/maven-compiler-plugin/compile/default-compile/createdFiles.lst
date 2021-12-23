@@ -1,0 +1,17 @@
+com\gyw\bean\BuyProductComment.class
+com\gyw\bean\BuyRoles.class
+com\gyw\bean\BuyOrder.class
+com\gyw\bean\BuyProductImages.class
+com\gyw\bean\BuyContent.class
+com\gyw\bean\BuyMenu.class
+com\gyw\bean\BuySeckillOrder.class
+com\gyw\bean\BuySeller.class
+com\gyw\bean\BuyAdmin.class
+com\gyw\bean\BuyUserAddress.class
+com\gyw\bean\BuyOrderDetail.class
+com\gyw\bean\BuyProductCategory.class
+com\gyw\bean\BuySeckillGoods.class
+com\gyw\bean\CarItem.class
+com\gyw\bean\BuyUser.class
+com\gyw\bean\BuyNews.class
+com\gyw\bean\BuyProduct.class
